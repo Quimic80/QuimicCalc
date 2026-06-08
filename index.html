@@ -2,12 +2,10 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>⚗ QuímiCalc — Calculadora de Química</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Química  — Calculadora de Química</title>
 <style>
+/* ── Google Fonts (inline @import — funciona sin CDN de archivos) ── */
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Outfit:wght@300;400;500;600;700&display=swap');
 
 /* ── Variables ── */
@@ -37,23 +35,17 @@
   --sans: 'Outfit', system-ui, sans-serif;
   --sidebar: 240px;
   --transition: .2s cubic-bezier(.4,0,.2,1);
-  /* Mobile-specific */
-  --nav-h: 60px;
-  --header-h: 52px;
-  --touch-min: 44px;
 }
 
 /* ── Reset ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; }
 body {
   font-family: var(--sans);
   background: var(--bg0);
   color: var(--txt);
   min-height: 100vh;
-  min-height: 100dvh;
   overflow-x: hidden;
-  -webkit-tap-highlight-color: transparent;
 }
 
 /* ── Background grid pattern ── */
@@ -81,9 +73,7 @@ body::before {
   100% { transform: translateY(-10vh) scale(1); opacity: 0; }
 }
 
-/* ══════════════════════════════════
-   DESKTOP LAYOUT
-══════════════════════════════════ */
+/* ── Layout ── */
 .app-shell {
   display: flex;
   min-height: 100vh;
@@ -91,7 +81,7 @@ body::before {
 }
 
 /* ══════════════════════════════════
-   SIDEBAR (Desktop)
+   SIDEBAR
 ══════════════════════════════════ */
 .sidebar {
   width: var(--sidebar);
@@ -141,7 +131,6 @@ body::before {
   transition: all var(--transition);
   user-select: none;
   position: relative;
-  min-height: var(--touch-min);
 }
 .nav-item:hover { color: var(--txt); background: rgba(0,229,255,.05); }
 .nav-item.active {
@@ -173,7 +162,7 @@ body::before {
 .sidebar-footer span { color: var(--lime); }
 
 /* ══════════════════════════════════
-   MAIN (Desktop)
+   MAIN
 ══════════════════════════════════ */
 .main {
   margin-left: var(--sidebar);
@@ -265,15 +254,13 @@ body::before {
   margin-bottom: 20px;
 }
 .tab-btn {
-  padding: 8px 14px;
+  padding: 6px 14px;
   border-radius: 99px; cursor: pointer;
   font-size: 12px; font-weight: 500;
   border: 1px solid var(--border2);
   color: var(--txt2); background: transparent;
   transition: all var(--transition);
   font-family: var(--sans);
-  min-height: var(--touch-min);
-  display: flex; align-items: center;
 }
 .tab-btn:hover { color: var(--txt); border-color: var(--cyan2); }
 .tab-btn.active {
@@ -287,12 +274,12 @@ body::before {
 /* ── Form elements ── */
 .field { margin-bottom: 14px; }
 .field label {
-  display: block; font-size: 13px;
+  display: block; font-size: 11.5px;
   font-weight: 500; color: var(--txt2);
-  margin-bottom: 8px; letter-spacing: .03em;
+  margin-bottom: 6px; letter-spacing: .03em;
 }
 .field label .hint {
-  font-size: 11px; color: var(--txt3);
+  font-size: 10px; color: var(--txt3);
   font-weight: 400; margin-left: 6px;
 }
 
@@ -301,47 +288,34 @@ input[type=text], input[type=number], select {
   background: var(--bg3);
   border: 1px solid var(--border2);
   border-radius: var(--r2);
-  padding: 12px 14px;
+  padding: 10px 14px;
   color: var(--txt);
-  font-size: 16px; /* Previene zoom en iOS */
+  font-size: 13px;
   font-family: var(--sans);
   outline: none;
   transition: all var(--transition);
   appearance: none;
-  -webkit-appearance: none;
-  min-height: var(--touch-min);
 }
 input[type=text]:focus, input[type=number]:focus, select:focus {
   border-color: var(--cyan);
   box-shadow: 0 0 0 3px rgba(0,229,255,.12);
   background: var(--bg4);
 }
-input.formula-input { font-family: var(--mono); font-size: 16px; letter-spacing: .05em; }
+input.formula-input { font-family: var(--mono); font-size: 14px; letter-spacing: .05em; }
 input::placeholder { color: var(--txt3); }
-
-/* Select arrow */
-select {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a6382' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  padding-right: 36px;
-}
 
 .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
 
 /* ── Buttons ── */
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
-  padding: 12px 20px; border-radius: var(--r2);
-  font-size: 14px; font-weight: 600;
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 10px 20px; border-radius: var(--r2);
+  font-size: 13px; font-weight: 600;
   cursor: pointer; border: none;
   font-family: var(--sans);
   transition: all var(--transition);
   position: relative; overflow: hidden;
-  min-height: var(--touch-min);
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
 }
 .btn::after {
   content: ''; position: absolute; inset: 0;
@@ -359,7 +333,6 @@ select {
   box-shadow: 0 6px 25px rgba(0,229,255,.4);
   transform: translateY(-1px);
 }
-.btn-primary:active { transform: translateY(0); }
 .btn-primary.calculating {
   animation: pulse-calc .7s ease-in-out infinite alternate;
 }
@@ -381,12 +354,11 @@ select {
   box-shadow: 0 4px 15px rgba(174,234,0,.2);
 }
 .btn-lime:hover { box-shadow: 0 6px 25px rgba(174,234,0,.35); transform: translateY(-1px); }
-.btn-lime:active { transform: translateY(0); }
 
 .btn-danger { background: rgba(255,71,87,.15); color: var(--red); border: 1px solid rgba(255,71,87,.3); }
 .btn-danger:hover { background: rgba(255,71,87,.25); }
 
-.btn-sm { padding: 8px 12px; font-size: 12px; min-height: 40px; }
+.btn-sm { padding: 6px 12px; font-size: 11.5px; }
 .btn-group { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
 
 /* ── Result box ── */
@@ -412,24 +384,29 @@ select {
   line-height: 1.2;
   word-break: break-all;
 }
+.result-main.typewriter {
+  overflow: hidden; white-space: nowrap;
+  animation: typing .5s steps(30) forwards;
+}
+@keyframes typing {
+  from { width: 0; }
+  to   { width: 100%; }
+}
 .result-unit { font-size: 14px; color: var(--txt2); margin-left: 8px; font-weight: 400; }
 .result-sub {
-  font-size: 13px; color: var(--txt2); margin-top: 8px;
+  font-size: 12px; color: var(--txt2); margin-top: 8px;
   font-family: var(--mono);
-  line-height: 1.6;
 }
 
 /* ── Steps section ── */
 .steps-toggle {
   display: flex; align-items: center; gap: 8px;
   cursor: pointer; user-select: none;
-  color: var(--txt2); font-size: 13px;
-  margin-top: 16px; padding: 12px 14px;
+  color: var(--txt2); font-size: 12px;
+  margin-top: 16px; padding: 10px 14px;
   background: var(--bg3); border-radius: var(--r2);
   border: 1px solid var(--border);
   transition: all var(--transition);
-  min-height: var(--touch-min);
-  -webkit-tap-highlight-color: transparent;
 }
 .steps-toggle:hover { color: var(--txt); border-color: var(--border2); }
 .steps-toggle .arrow {
@@ -446,52 +423,48 @@ select {
 }
 
 .step-item {
-  display: flex; gap: 12px; padding: 12px 0;
+  display: flex; gap: 12px; padding: 10px 0;
   border-bottom: 1px solid var(--border);
   align-items: flex-start;
 }
 .step-item:last-child { border-bottom: none; }
 .step-num {
-  width: 24px; height: 24px; border-radius: 50%;
+  width: 22px; height: 22px; border-radius: 50%;
   background: var(--bg3); border: 1px solid var(--border2);
   display: flex; align-items: center; justify-content: center;
   font-size: 10px; font-weight: 700; color: var(--cyan);
   flex-shrink: 0; margin-top: 1px;
 }
 .step-text {
-  font-size: 13px; color: var(--txt2); line-height: 1.7;
+  font-size: 12.5px; color: var(--txt2); line-height: 1.6;
 }
 .step-text code {
-  font-family: var(--mono); font-size: 12px;
+  font-family: var(--mono); font-size: 11.5px;
   color: var(--cyan); background: rgba(0,229,255,.08);
-  padding: 2px 6px; border-radius: 4px;
-  word-break: break-all;
+  padding: 1px 6px; border-radius: 4px;
 }
 .step-text .highlight { color: var(--lime); font-weight: 600; }
 
 /* ── Error / info alerts ── */
 .alert {
-  padding: 12px 14px; border-radius: var(--r2);
-  font-size: 13px; margin-top: 12px;
-  display: flex; align-items: flex-start; gap: 8px;
-  line-height: 1.5;
+  padding: 10px 14px; border-radius: var(--r2);
+  font-size: 12.5px; margin-top: 12px;
+  display: flex; align-items: center; gap: 8px;
 }
 .alert-error { background: rgba(255,71,87,.1); color: var(--red); border: 1px solid rgba(255,71,87,.25); }
 .alert-info  { background: rgba(0,229,255,.08); color: var(--cyan2); border: 1px solid rgba(0,229,255,.2); }
 .alert-success { background: rgba(174,234,0,.08); color: var(--lime); border: 1px solid rgba(174,234,0,.2); }
 
 /* ── Table ── */
-.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-.data-table { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 320px; }
+.data-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
 .data-table th {
-  text-align: left; padding: 10px 12px;
+  text-align: left; padding: 8px 12px;
   font-size: 10px; font-weight: 600;
   color: var(--txt3); letter-spacing: .1em; text-transform: uppercase;
   border-bottom: 1px solid var(--border);
-  white-space: nowrap;
 }
 .data-table td {
-  padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,.04);
+  padding: 9px 12px; border-bottom: 1px solid rgba(255,255,255,.04);
   color: var(--txt2); vertical-align: middle;
 }
 .data-table tr:last-child td { border-bottom: none; }
@@ -521,36 +494,38 @@ select {
 .pie-legend { flex: 1; min-width: 160px; }
 .legend-item {
   display: flex; align-items: center; gap: 8px;
-  font-size: 13px; color: var(--txt2); padding: 5px 0;
+  font-size: 12px; color: var(--txt2); padding: 4px 0;
 }
 .legend-dot {
   width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
 }
-.legend-pct { margin-left: auto; font-family: var(--mono); font-size: 12px; color: var(--txt); }
+.legend-pct { margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--txt); }
 
 /* ── Empirical element rows ── */
 .elem-row {
   display: grid; grid-template-columns: 1fr 1fr 1fr auto;
   gap: 8px; margin-bottom: 8px; align-items: end;
 }
+@media (max-width: 600px) {
+  .elem-row { grid-template-columns: 1fr 1fr auto; }
+  .elem-row .elem-pct { grid-column: 1 / -1; }
+}
 
 /* ── Copy button ── */
 .copy-btn {
   display: inline-flex; align-items: center; gap: 5px;
-  font-size: 11px; cursor: pointer;
-  color: var(--txt3); padding: 8px 10px;
+  font-size: 10.5px; cursor: pointer;
+  color: var(--txt3); padding: 4px 8px;
   border-radius: 5px; transition: all var(--transition);
   border: 1px solid transparent;
   background: none; font-family: var(--sans);
-  min-height: 36px;
-  -webkit-tap-highlight-color: transparent;
 }
 .copy-btn:hover { color: var(--cyan); border-color: var(--border2); background: var(--bg3); }
 .copy-btn.copied { color: var(--lime); }
 
 /* ── Periodic mini-table ── */
 .periodic-mini {
-  display: none;
+  display: none; /* shown via JS toggle */
   background: var(--bg3);
   border: 1px solid var(--border2);
   border-radius: var(--r);
@@ -559,21 +534,17 @@ select {
 }
 .periodic-mini.show { display: block; animation: fade-in .2s ease; }
 .periodic-mini h4 {
-  font-size: 11px; color: var(--txt3); letter-spacing: .12em;
+  font-size: 10px; color: var(--txt3); letter-spacing: .12em;
   text-transform: uppercase; margin-bottom: 10px;
 }
 .periodic-grid {
-  display: flex; flex-wrap: wrap; gap: 5px;
+  display: flex; flex-wrap: wrap; gap: 4px;
 }
 .elem-chip {
-  padding: 7px 8px; border-radius: 6px;
+  padding: 5px 8px; border-radius: 6px;
   background: var(--bg4); border: 1px solid var(--border);
   cursor: pointer; transition: all var(--transition);
   text-align: center; min-width: 44px;
-  min-height: var(--touch-min);
-  display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  -webkit-tap-highlight-color: transparent;
 }
 .elem-chip:hover { border-color: var(--cyan); background: rgba(0,229,255,.1); }
 .elem-chip .sym { display: block; font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--txt); }
@@ -581,15 +552,14 @@ select {
 
 /* ── History panel ── */
 .hist-item {
-  padding: 14px; border-bottom: 1px solid var(--border);
+  padding: 10px 14px; border-bottom: 1px solid var(--border);
   cursor: pointer; transition: background var(--transition);
-  min-height: var(--touch-min);
 }
 .hist-item:hover { background: var(--bg3); }
 .hist-item:last-child { border-bottom: none; }
-.hist-type { font-size: 10px; color: var(--txt3); text-transform: uppercase; letter-spacing: .1em; }
-.hist-result { font-family: var(--mono); font-size: 13px; color: var(--cyan); margin-top: 3px; line-height: 1.5; word-break: break-all; }
-.hist-time { font-size: 11px; color: var(--txt3); margin-top: 3px; }
+.hist-type { font-size: 9px; color: var(--txt3); text-transform: uppercase; letter-spacing: .1em; }
+.hist-result { font-family: var(--mono); font-size: 12px; color: var(--cyan); margin-top: 2px; }
+.hist-time { font-size: 10px; color: var(--txt3); margin-top: 2px; }
 
 /* ── Combined module flowchart ── */
 .flow-steps {
@@ -597,7 +567,7 @@ select {
 }
 .flow-step {
   background: var(--bg3); border: 1px solid var(--border);
-  border-radius: var(--r); padding: 18px;
+  border-radius: var(--r); padding: 18px 20px;
   position: relative;
 }
 .flow-step.done { border-color: rgba(0,229,255,.4); background: rgba(0,229,255,.05); }
@@ -606,65 +576,36 @@ select {
   font-size: 14px; color: var(--lime);
 }
 .flow-connector {
-  display: flex; justify-content: center; padding: 6px 0;
+  display: flex; justify-content: center; padding: 4px 0;
   color: var(--txt3); font-size: 18px;
 }
 .flow-step-num {
-  font-size: 10px; font-weight: 700; color: var(--txt3);
-  letter-spacing: .15em; text-transform: uppercase; margin-bottom: 12px;
+  font-size: 9px; font-weight: 700; color: var(--txt3);
+  letter-spacing: .15em; text-transform: uppercase; margin-bottom: 10px;
 }
 
-/* ══════════════════════════════════
-   MOBILE HEADER (solo móvil)
-══════════════════════════════════ */
-.mobile-header {
-  display: none;
-  position: fixed; top: 0; left: 0; right: 0;
-  height: var(--header-h);
-  background: var(--bg1);
-  border-bottom: 1px solid var(--border);
-  z-index: 200;
-  align-items: center;
-  padding: 0 16px;
-  gap: 12px;
-}
-.mobile-header .logo-mark {
-  font-size: 22px; line-height: 1;
-}
-.mobile-header .logo-text {
-  font-family: var(--mono);
-  font-size: 13px; font-weight: 700;
-  color: var(--cyan); letter-spacing: .06em;
-  flex: 1;
-}
-.mobile-menu-btn {
-  width: 40px; height: 40px;
-  background: var(--bg3); border: 1px solid var(--border2);
-  border-radius: 10px; cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 18px; color: var(--txt);
-  -webkit-tap-highlight-color: transparent;
-  flex-shrink: 0;
+/* ── Mobile sidebar toggle ── */
+.mobile-toggle {
+  display: none; position: fixed; top: 14px; right: 14px; z-index: 200;
+  background: var(--bg2); border: 1px solid var(--border2); border-radius: 8px;
+  padding: 8px 10px; cursor: pointer; font-size: 18px; color: var(--txt);
 }
 
-/* ── Sidebar overlay ── */
 .sidebar-overlay {
   display: none; position: fixed; inset: 0;
-  background: rgba(0,0,0,.7); z-index: 99;
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  background: rgba(0,0,0,.6); z-index: 99;
 }
 
 /* ── Tooltip ── */
 .tooltip-wrap { position: relative; display: inline-block; }
-.tooltip-wrap:hover .tooltip { opacity: 1; transform: translateX(-50%) translateY(0); pointer-events: none; }
+.tooltip-wrap:hover .tooltip { opacity: 1; transform: translateY(0); pointer-events: none; }
 .tooltip {
   position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%) translateY(4px);
   background: var(--bg4); border: 1px solid var(--border2);
-  padding: 8px 12px; border-radius: 6px;
-  font-size: 12px; color: var(--txt); white-space: nowrap;
+  padding: 6px 10px; border-radius: 6px;
+  font-size: 11px; color: var(--txt); white-space: nowrap;
   opacity: 0; transition: all var(--transition); z-index: 50;
-  max-width: 200px; white-space: normal; text-align: center; min-width: 140px;
+  max-width: 220px; white-space: normal; text-align: center; min-width: 140px;
 }
 
 /* ── Scrollbar ── */
@@ -673,177 +614,23 @@ select {
 ::-webkit-scrollbar-thumb { background: var(--bg4); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--border2); }
 
-/* ══════════════════════════════════
-   BOTTOM NAV BAR (solo móvil)
-══════════════════════════════════ */
-.bottom-nav {
-  display: none;
-  position: fixed; bottom: 0; left: 0; right: 0;
-  height: var(--nav-h);
-  background: var(--bg1);
-  border-top: 1px solid var(--border);
-  z-index: 200;
-  padding: 0 4px;
-  padding-bottom: env(safe-area-inset-bottom);
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.bottom-nav::-webkit-scrollbar { display: none; }
-.bottom-nav-inner {
-  display: flex; align-items: center;
-  height: var(--nav-h);
-  min-width: max-content;
-  gap: 2px;
-  padding: 0 4px;
-}
-.bnav-item {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  min-width: 58px; height: 52px;
-  border-radius: 10px; cursor: pointer;
-  color: var(--txt3); font-size: 10px;
-  transition: all var(--transition);
-  padding: 4px 6px;
-  gap: 3px;
-  -webkit-tap-highlight-color: transparent;
-  flex-shrink: 0;
-}
-.bnav-item:hover, .bnav-item.active {
-  color: var(--cyan); background: rgba(0,229,255,.08);
-}
-.bnav-icon {
-  font-family: var(--mono); font-size: 14px; font-weight: 700;
-  line-height: 1;
-}
-.bnav-label {
-  font-size: 9px; letter-spacing: .02em; white-space: nowrap;
-}
-
-/* ══════════════════════════════════
-   RESPONSIVE — MÓVIL
-══════════════════════════════════ */
+/* ── Responsive ── */
 @media (max-width: 768px) {
-
-  /* Ocultar sidebar fijo de desktop, mostrar drawer */
-  .mobile-header { display: flex; }
-  .bottom-nav { display: flex; }
-
+  .mobile-toggle { display: block; }
   .sidebar {
     transform: translateX(-100%);
-    width: 280px;
-    top: 0;
-    padding-bottom: 80px;
-    z-index: 300;
+    width: 260px;
   }
-  .sidebar.open { transform: translateX(0); box-shadow: 8px 0 40px rgba(0,0,0,.6); }
+  .sidebar.open { transform: translateX(0); }
   .sidebar-overlay.show { display: block; }
-
-  /* Main content ajustado */
   .main {
     margin-left: 0;
     max-width: 100vw;
-    padding: 16px 14px 80px; /* bottom = nav bar */
-    padding-top: calc(var(--header-h) + 16px);
+    padding: 16px 14px 32px;
   }
-
-  /* Page header más compacto */
-  .page-header { margin-bottom: 16px; gap: 8px; }
-  .page-title { font-size: 17px; }
-  .page-subtitle { font-size: 12px; }
-
-  /* Grids → columna única */
-  .row2, .row3 { grid-template-columns: 1fr; gap: 10px; }
-
-  /* Elem row ajustado */
-  .elem-row { grid-template-columns: 1fr 1fr auto; gap: 8px; }
-  .elem-row .field:nth-child(3) { grid-column: 1 / 3; }
-
-  /* Resultado más grande en móvil para legibilidad */
-  .result-main { font-size: 22px; }
-  .result-sub { font-size: 12px; }
-
-  /* Cards con menos padding */
-  .card { padding: 16px 14px; }
-
-  /* Formula display wrap mejor */
-  .formula-display { font-size: 12px; padding: 10px 12px; gap: 6px; }
-
-  /* Tabla con scroll horizontal */
-  .card > table, .card > .data-table {
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Tabla wrapper */
-  .table-scroll { margin: 0 -14px; padding: 0 14px; }
-
-  /* Tabs scrollables */
-  .tabs {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-bottom: 4px;
-    gap: 6px;
-  }
-  .tabs::-webkit-scrollbar { display: none; }
-  .tab-btn { flex-shrink: 0; white-space: nowrap; }
-
-  /* Steps text más legible */
-  .step-text { font-size: 12.5px; }
-  .step-text code { font-size: 11px; }
-
-  /* Botones full-width en móvil cuando son primarios */
-  .btn-group { gap: 8px; }
-  .btn-group .btn-primary { width: 100%; justify-content: center; }
-
-  /* Pie chart responsive */
-  .pie-wrap { flex-direction: column; align-items: flex-start; gap: 16px; }
-  .pie-wrap canvas { width: 140px !important; height: 140px !important; }
-
-  /* Cards combinada */
-  .flow-step { padding: 14px 12px; }
-
-  /* Grid stats 3 cols → comprimido */
-  .stats-grid-3 {
-    grid-template-columns: 1fr !important;
-    gap: 8px !important;
-  }
-
-  /* Historial */
-  .hist-result { font-size: 12px; }
-
-  /* Periodic mini chips más táctiles */
-  .periodic-grid { gap: 4px; }
-  .elem-chip { min-width: 42px; min-height: 44px; }
-
-  /* Alerts */
-  .alert { font-size: 12.5px; }
-
-  /* Tooltips desactivados en móvil (no hay hover) */
-  .tooltip { display: none; }
-}
-
-/* ── Pantallas muy pequeñas ── */
-@media (max-width: 360px) {
-  .main { padding: 12px 10px 80px; padding-top: calc(var(--header-h) + 12px); }
-  .card { padding: 14px 12px; }
-  .result-main { font-size: 19px; }
-  .page-title { font-size: 15px; }
-  input[type=text], input[type=number], select { padding: 10px 12px; }
-  .bnav-item { min-width: 50px; }
-}
-
-/* ── Safe areas (iPhone notch, etc.) ── */
-@supports (padding: env(safe-area-inset-bottom)) {
-  .bottom-nav {
-    padding-bottom: env(safe-area-inset-bottom);
-    height: calc(var(--nav-h) + env(safe-area-inset-bottom));
-  }
-  @media (max-width: 768px) {
-    .main { padding-bottom: calc(80px + env(safe-area-inset-bottom)); }
-  }
+  .row2, .row3 { grid-template-columns: 1fr; }
+  .result-main { font-size: 20px; }
+  .page-title { font-size: 18px; }
 }
 </style>
 </head>
@@ -852,14 +639,8 @@ select {
 <!-- Particles container -->
 <div id="particles"></div>
 
-<!-- ══════ MOBILE HEADER ══════ -->
-<header class="mobile-header">
-  <span class="logo-mark">⚗</span>
-  <span class="logo-text">QuímiCalc</span>
-  <button class="mobile-menu-btn" onclick="toggleSidebar()" aria-label="Abrir menú">☰</button>
-</header>
-
-<!-- Overlay -->
+<!-- Mobile toggle -->
+<button class="mobile-toggle" onclick="toggleSidebar()" aria-label="Menú">☰</button>
 <div class="sidebar-overlay" id="overlay" onclick="toggleSidebar()"></div>
 
 <div class="app-shell">
@@ -868,7 +649,7 @@ select {
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-logo">
       <span class="logo-icon">⚗</span>
-      <h1>QuímiCalc</h1>
+      <h1>Calculadora química</h1>
       <p>Calculadora de Química</p>
     </div>
 
@@ -933,11 +714,11 @@ select {
       <div class="card">
         <div class="card-title">Método de cálculo</div>
         <div class="formula-display">
-          <span>n = m / M</span>
+          <span class="tooltip-wrap">n = m / M<div class="tooltip">Moles desde masa (g) dividida entre masa molar (g/mol)</div></span>
           <span class="f-sep">|</span>
-          <span>n = N / Nₐ</span>
+          <span class="tooltip-wrap">n = N / Nₐ<div class="tooltip">Moles desde número de partículas dividido entre Avogadro</div></span>
           <span class="f-sep">|</span>
-          <span>n = V / Vₘ</span>
+          <span class="tooltip-wrap">n = V / Vₘ<div class="tooltip">Moles desde volumen de gas en condiciones normales</div></span>
         </div>
 
         <div class="tabs">
@@ -951,11 +732,11 @@ select {
           <div class="row2">
             <div class="field">
               <label>Masa <span class="hint">(gramos)</span></label>
-              <input type="number" id="m1-masa" placeholder="ej. 18" min="0" step="any" inputmode="decimal">
+              <input type="number" id="m1-masa" placeholder="ej. 18" min="0" step="any">
             </div>
             <div class="field">
               <label>Masa molar <span class="hint">(g/mol)</span></label>
-              <input type="number" id="m1-M" placeholder="ej. 18.015" min="0" step="any" inputmode="decimal">
+              <input type="number" id="m1-M" placeholder="ej. 18.015" min="0" step="any">
             </div>
           </div>
           <div class="btn-group">
@@ -968,8 +749,8 @@ select {
         <div class="tab-panel" id="t-part" data-tabgroup="moles-tab">
           <div class="row2">
             <div class="field">
-              <label>Número de partículas (N)</label>
-              <input type="number" id="m1-N" placeholder="ej. 1.2044e24" step="any" min="0" inputmode="decimal">
+              <label>Número de partículas (N) <span class="hint">(notación científica)</span></label>
+              <input type="number" id="m1-N" placeholder="ej. 1.2044e24" step="any" min="0">
             </div>
             <div class="field">
               <label>Tipo de partícula</label>
@@ -989,14 +770,14 @@ select {
           <div class="row2">
             <div class="field">
               <label>Volumen del gas <span class="hint">(litros)</span></label>
-              <input type="number" id="m1-V" placeholder="ej. 22.4" min="0" step="any" inputmode="decimal">
+              <input type="number" id="m1-V" placeholder="ej. 22.4" min="0" step="any">
             </div>
             <div class="field">
-              <label>Volumen molar Vₘ</label>
+              <label>Volumen molar Vₘ <span class="hint">(L/mol)</span></label>
               <select id="m1-Vm">
-                <option value="22.4">22.4 L/mol — CNTP (0°C)</option>
-                <option value="22.414">22.414 L/mol — exacto</option>
-                <option value="24.465">24.465 L/mol — 25°C</option>
+                <option value="22.4">22.4 L/mol — CNTP (0 °C, 1 atm)</option>
+                <option value="22.414">22.414 L/mol — exacto CNTP</option>
+                <option value="24.465">24.465 L/mol — 25 °C, 1 atm</option>
               </select>
             </div>
           </div>
@@ -1029,7 +810,7 @@ select {
         <div class="row2">
           <div class="field">
             <label>Moles (n)</label>
-            <input type="number" id="av-n" placeholder="ej. 2.5" min="0" step="any" inputmode="decimal">
+            <input type="number" id="av-n" placeholder="ej. 2.5" min="0" step="any">
           </div>
           <div class="field">
             <label>Tipo de partícula</label>
@@ -1037,8 +818,8 @@ select {
           </div>
         </div>
         <div class="field">
-          <label>Fórmula química <span class="hint">(opcional)</span></label>
-          <input type="text" class="formula-input" id="av-formula" placeholder="ej. H2O, NaCl" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+          <label>Fórmula química <span class="hint">(opcional — para contar átomos por molécula)</span></label>
+          <input type="text" class="formula-input" id="av-formula" placeholder="ej. H2O, NaCl">
         </div>
         <div class="btn-group">
           <button class="btn btn-primary" onclick="calcAvogadro()">⚗ Calcular partículas</button>
@@ -1061,8 +842,8 @@ select {
         <div class="card-title">Fórmula</div>
         <div class="formula-display">M = Σ (nᵢ × Mᵢ)</div>
         <div class="field">
-          <label>Fórmula química <span class="hint">(ej: H2O, Ca3(PO4)2)</span></label>
-          <input type="text" class="formula-input" id="mm-formula" placeholder="C6H12O6" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+          <label>Fórmula química <span class="hint">(ej: H2O, Ca3(PO4)2, C6H12O6)</span></label>
+          <input type="text" class="formula-input" id="mm-formula" placeholder="C6H12O6">
         </div>
         <div id="mm-periodic-btn" style="margin-bottom:10px">
           <button class="btn btn-secondary btn-sm" onclick="togglePeriodic('mm')">🔬 Tabla periódica</button>
@@ -1081,7 +862,7 @@ select {
       <div class="page-header">
         <div>
           <div class="page-title"><span>%</span> — Composición Porcentual</div>
-          <div class="page-subtitle">Porcentaje en masa de cada elemento</div>
+          <div class="page-subtitle">Porcentaje en masa de cada elemento del compuesto</div>
         </div>
         <span class="badge badge-lime">Módulo 4</span>
       </div>
@@ -1090,7 +871,7 @@ select {
         <div class="formula-display">% elem = (nᵢ × Mᵢ / M) × 100</div>
         <div class="field">
           <label>Fórmula química</label>
-          <input type="text" class="formula-input" id="comp-formula" placeholder="ej. C6H12O6" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+          <input type="text" class="formula-input" id="comp-formula" placeholder="ej. C6H12O6">
         </div>
         <div class="btn-group">
           <button class="btn btn-primary" onclick="calcComposicion()">⚗ Calcular composición</button>
@@ -1105,17 +886,17 @@ select {
       <div class="page-header">
         <div>
           <div class="page-title"><span>FE</span> — Fórmula Empírica</div>
-          <div class="page-subtitle">Determina la fórmula mínima desde porcentajes</div>
+          <div class="page-subtitle">Determina la fórmula mínima desde porcentajes en masa</div>
         </div>
         <span class="badge badge-cyan">Módulo 5</span>
       </div>
       <div class="card">
         <div class="card-title">Datos de entrada</div>
-        <p style="font-size:13px;color:var(--txt3);margin-bottom:14px;line-height:1.5">Ingresa el % en masa de cada elemento. La suma debe ser ~100%.</p>
+        <p style="font-size:12px;color:var(--txt3);margin-bottom:14px">Ingresa el porcentaje en masa de cada elemento. La suma debe ser ~100%.</p>
         <div id="empirica-list"></div>
         <div class="btn-group" style="margin-bottom:16px">
-          <button class="btn btn-secondary btn-sm" onclick="addElemRow()">+ Agregar</button>
-          <button class="btn btn-secondary btn-sm" onclick="loadEx('empirica')">📋 Glucosa</button>
+          <button class="btn btn-secondary btn-sm" onclick="addElemRow()">+ Agregar elemento</button>
+          <button class="btn btn-secondary btn-sm" onclick="loadEx('empirica')">📋 Ejemplo glucosa</button>
         </div>
         <div class="btn-group">
           <button class="btn btn-primary" onclick="calcEmpirica()">⚗ Calcular fórmula empírica</button>
@@ -1129,26 +910,26 @@ select {
       <div class="page-header">
         <div>
           <div class="page-title"><span>FM</span> — Fórmula Molecular</div>
-          <div class="page-subtitle">Obtén la FM desde la empírica y la masa molar</div>
+          <div class="page-subtitle">Obtén la fórmula molecular desde la empírica y la masa molar</div>
         </div>
         <span class="badge badge-lime">Módulo 6</span>
       </div>
       <div class="card">
         <div class="card-title">Fórmula</div>
-        <div class="formula-display">FM = (FE)ₙ &nbsp; n = M_mol / M_empírica</div>
+        <div class="formula-display">FM = (FE)ₙ &nbsp;&nbsp; n = M_mol / M_empírica</div>
         <div class="row2">
           <div class="field">
             <label>Fórmula empírica</label>
-            <input type="text" class="formula-input" id="fmol-fe" placeholder="ej. CH2O" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+            <input type="text" class="formula-input" id="fmol-fe" placeholder="ej. CH2O">
           </div>
           <div class="field">
-            <label>Masa molar <span class="hint">(g/mol)</span></label>
-            <input type="number" id="fmol-M" placeholder="ej. 180" min="0" step="any" inputmode="decimal">
+            <label>Masa molar del compuesto <span class="hint">(g/mol)</span></label>
+            <input type="number" id="fmol-M" placeholder="ej. 180" min="0" step="any">
           </div>
         </div>
         <div class="btn-group">
           <button class="btn btn-primary" onclick="calcMolecular()">⚗ Calcular fórmula molecular</button>
-          <button class="btn btn-secondary btn-sm" onclick="loadEx('molecular')">📋 Glucosa</button>
+          <button class="btn btn-secondary btn-sm" onclick="loadEx('molecular')">📋 Ejemplo glucosa</button>
         </div>
         <div id="molecular-result"></div>
       </div>
@@ -1159,12 +940,13 @@ select {
       <div class="page-header">
         <div>
           <div class="page-title"><span>⚗</span> Calculadora Combinada</div>
-          <div class="page-subtitle">Flujo completo: % → FE → FM → moles y partículas</div>
+          <div class="page-subtitle">Flujo completo: % composición → FE → FM → moles y partículas</div>
         </div>
         <span class="badge badge-cyan">Módulo 7</span>
       </div>
 
       <div class="flow-steps" id="flow-container">
+        <!-- Paso 1 -->
         <div class="flow-step" id="flow1">
           <div class="flow-step-num">Paso 1 — Composición porcentual</div>
           <div id="comb-list"></div>
@@ -1178,11 +960,12 @@ select {
 
         <div class="flow-connector">↓</div>
 
+        <!-- Paso 2 -->
         <div class="flow-step" id="flow2" style="opacity:.5">
           <div class="flow-step-num">Paso 2 — Fórmula molecular</div>
           <div class="field">
             <label>Masa molar experimental <span class="hint">(g/mol)</span></label>
-            <input type="number" id="comb-Mmol" placeholder="ej. 180" min="0" step="any" disabled inputmode="decimal">
+            <input type="number" id="comb-Mmol" placeholder="ej. 180" min="0" step="any" disabled>
           </div>
           <button class="btn btn-primary" onclick="combStep2()" disabled id="comb-btn2">Continuar →</button>
           <div id="comb-res2"></div>
@@ -1190,12 +973,13 @@ select {
 
         <div class="flow-connector">↓</div>
 
+        <!-- Paso 3 -->
         <div class="flow-step" id="flow3" style="opacity:.5">
           <div class="flow-step-num">Paso 3 — Moles y partículas</div>
           <div class="row2">
             <div class="field">
               <label>Masa de la muestra <span class="hint">(g)</span></label>
-              <input type="number" id="comb-masa" placeholder="ej. 90" min="0" step="any" disabled inputmode="decimal">
+              <input type="number" id="comb-masa" placeholder="ej. 90" min="0" step="any" disabled>
             </div>
             <div class="field">
               <label>Tipo de partícula</label>
@@ -1225,49 +1009,13 @@ select {
   </main>
 </div>
 
-<!-- ══════ BOTTOM NAVIGATION (móvil) ══════ -->
-<nav class="bottom-nav" aria-label="Navegación principal">
-  <div class="bottom-nav-inner">
-    <div class="bnav-item active" onclick="showModule('moles',null,this)" data-module="moles">
-      <span class="bnav-icon">n</span>
-      <span class="bnav-label">Moles</span>
-    </div>
-    <div class="bnav-item" onclick="showModule('avogadro',null,this)" data-module="avogadro">
-      <span class="bnav-icon">Nₐ</span>
-      <span class="bnav-label">Avogadro</span>
-    </div>
-    <div class="bnav-item" onclick="showModule('masaMolar',null,this)" data-module="masaMolar">
-      <span class="bnav-icon">M</span>
-      <span class="bnav-label">Masa M.</span>
-    </div>
-    <div class="bnav-item" onclick="showModule('composicion',null,this)" data-module="composicion">
-      <span class="bnav-icon">%</span>
-      <span class="bnav-label">Compos.</span>
-    </div>
-    <div class="bnav-item" onclick="showModule('empirica',null,this)" data-module="empirica">
-      <span class="bnav-icon">FE</span>
-      <span class="bnav-label">Empírica</span>
-    </div>
-    <div class="bnav-item" onclick="showModule('molecular',null,this)" data-module="molecular">
-      <span class="bnav-icon">FM</span>
-      <span class="bnav-label">Molecular</span>
-    </div>
-    <div class="bnav-item" onclick="showModule('combinada',null,this)" data-module="combinada">
-      <span class="bnav-icon">⚗</span>
-      <span class="bnav-label">Combinada</span>
-    </div>
-    <div class="bnav-item" onclick="showModule('historial',null,this)" data-module="historial">
-      <span class="bnav-icon">🕐</span>
-      <span class="bnav-label">Historial</span>
-    </div>
-  </div>
-</nav>
-
 <!-- ═══════════════ JAVASCRIPT ═══════════════ -->
 <script>
+/* ── Constantes ── */
 const NA = 6.02214076e23;
 const VM_CNTP = 22.4;
 
+/* ── Masas atómicas (30+ elementos) ── */
 const ATOMIC_MASS = {
   H:1.008,He:4.003,Li:6.941,Be:9.012,B:10.811,C:12.011,N:14.007,O:15.999,
   F:18.998,Ne:20.180,Na:22.990,Mg:24.305,Al:26.982,Si:28.086,P:30.974,
@@ -1292,7 +1040,7 @@ const ELEMENT_NAMES = {
   K:'Potasio',Ca:'Calcio',Fe:'Hierro',Cu:'Cobre',Zn:'Zinc',Ag:'Plata',
   Au:'Oro',Pb:'Plomo',I:'Yodo',Br:'Bromo',Mn:'Manganeso',Cr:'Cromo',
   Co:'Cobalto',Ni:'Níquel',Pt:'Platino',Hg:'Mercurio',Sn:'Estaño',
-  Ba:'Bario',Sr:'Estroncio',Ti:'Titanio'
+  Ba:'Bario',Sr:'Estroncio',Ti:'Titanio',Mg:'Magnesio'
 };
 
 const PIE_COLORS = [
@@ -1329,23 +1077,13 @@ function renderHistory() {
 }
 
 /* ── Module navigation ── */
-function showModule(id, sidebarEl, bnavEl) {
+function showModule(id, el) {
   document.querySelectorAll('.module').forEach(m=>m.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  document.querySelectorAll('.bnav-item').forEach(n=>n.classList.remove('active'));
   document.getElementById('mod-'+id).classList.add('active');
-  if(sidebarEl) sidebarEl.classList.add('active');
-  // Sync sidebar nav item
-  const sidebarItem = document.querySelector(`.nav-item[data-module="${id}"]`);
-  if(sidebarItem) sidebarItem.classList.add('active');
-  // Sync bnav
-  if(bnavEl) bnavEl.classList.add('active');
-  const bnavItem = document.querySelector(`.bnav-item[data-module="${id}"]`);
-  if(bnavItem) bnavItem.classList.add('active');
+  if(el) el.classList.add('active');
   if(id==='historial') renderHistory();
   if(window.innerWidth<=768) closeSidebar();
-  // Scroll to top
-  window.scrollTo({top:0, behavior:'smooth'});
 }
 
 function toggleSidebar() {
@@ -1368,6 +1106,7 @@ function setTab(group, panelId, btn) {
 
 /* ── Formula parser ── */
 function parseFormula(str) {
+  // Normalize subscript unicode chars
   str = str.replace(/[₀-₉]/g, d=>'0123456789'['₀₁₂₃₄₅₆₇₈₉'.indexOf(d)]);
   str = str.replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹]/g, d=>'0123456789'['⁰¹²³⁴⁵⁶⁷⁸⁹'.indexOf(d)]);
   const counts = {};
@@ -1413,6 +1152,7 @@ function calcMolarMass(parsed) {
   return M;
 }
 
+/* ── Format helpers ── */
 function fmtN(n) {
   if(!isFinite(n)) return '—';
   if(n===0) return '0';
@@ -1428,12 +1168,18 @@ function fmtFixed(n, dec=4) {
   return isFinite(n) ? parseFloat(n.toFixed(dec)).toString() : '—';
 }
 
+function toSub(n) {
+  if(n===1) return '';
+  return String(n).replace(/\d/g,d=>'₀₁₂₃₄₅₆₇₈₉'[d]);
+}
+
 function fmtFormula(parsed) {
   return Object.entries(parsed).map(([el,n])=>
     `${el}${n>1?`<sub>${n}</sub>`:''}`
   ).join('');
 }
 
+/* ── Result rendering ── */
 function mkResult(mainHtml, unit='', sub='') {
   return `<div class="result-box">
     <div class="result-main">${mainHtml}<span class="result-unit">${unit}</span></div>
@@ -1487,13 +1233,17 @@ function progress(target) {
   });
 }
 
-/* ── MÓDULO 1 — MOLES ── */
+/* ══════════════════════════════════
+   MÓDULO 1 — MOLES
+══════════════════════════════════ */
 async function calcMoles(tipo) {
   const btn = event.currentTarget;
   btn.classList.add('calculating');
   await progress('moles-result');
   btn.classList.remove('calculating');
+
   let n, steps=[];
+
   if(tipo==='masa') {
     const m = parseFloat(document.getElementById('m1-masa').value);
     const M = parseFloat(document.getElementById('m1-M').value);
@@ -1525,27 +1275,32 @@ async function calcMoles(tipo) {
     n = V/Vm;
     steps = [
       `Fórmula: <code>n = V / Vₘ</code>`,
-      `Vₘ = ${Vm} L/mol`,
+      `Vₘ = ${Vm} L/mol (condiciones seleccionadas)`,
       `Datos: V = ${V} L`,
       `Cálculo: <code>n = ${V} / ${Vm}</code>`,
       `Resultado: <span class="highlight">n = ${fmtFixed(n,6)} mol</span>`
     ];
     saveHist('Moles (desde volumen)', `n = ${fmtFixed(n,5)} mol`);
   }
+
   document.getElementById('moles-result').innerHTML =
     mkResult(fmtFixed(n,6), 'mol') + mkSteps(steps);
 }
 
-/* ── MÓDULO 2 — AVOGADRO ── */
+/* ══════════════════════════════════
+   MÓDULO 2 — AVOGADRO
+══════════════════════════════════ */
 async function calcAvogadro() {
   const n = parseFloat(document.getElementById('av-n').value);
   const tipo = document.getElementById('av-tipo').value;
   const formula = document.getElementById('av-formula').value.trim();
   if(isNaN(n)||n<0) return showErr('avogadro-result','Ingresa un valor de moles válido');
+
   const btn = event.currentTarget;
   btn.classList.add('calculating');
   await progress('avogadro-result');
   btn.classList.remove('calculating');
+
   const N = n * NA;
   let steps = [
     `Fórmula: <code>N = n × Nₐ</code>`,
@@ -1554,17 +1309,19 @@ async function calcAvogadro() {
     `Cálculo: <code>N = ${n} × 6.022×10²³</code>`,
     `Resultado: <span class="highlight">N = ${N.toExponential(4)} ${tipo}</span>`
   ];
+
   let extraHtml = '';
   if(formula) {
     const parsed = parseFormula(formula);
     if(parsed) {
       const totalAt = Object.values(parsed).reduce((a,b)=>a+b, 0);
       const natoms = N * totalAt;
-      extraHtml = `<div class="result-sub">Átomos/fórmula: <b style="color:var(--lime)">${totalAt}</b> → Total: <b style="color:var(--cyan)">${natoms.toExponential(4)}</b></div>`;
-      steps.push(`${formula} tiene ${totalAt} átomo(s) por unidad`);
-      steps.push(`Total átomos: <code>${N.toExponential(3)} × ${totalAt} = ${natoms.toExponential(4)}</code>`);
+      extraHtml = `<div class="result-sub">Átomos por fórmula: <b style="color:var(--lime)">${totalAt}</b> → Total átomos: <b style="color:var(--cyan)">${natoms.toExponential(4)}</b></div>`;
+      steps.push(`Fórmula ${formula} tiene ${totalAt} átomo(s) por unidad`);
+      steps.push(`Total de átomos: <code>${N.toExponential(3)} × ${totalAt} = ${natoms.toExponential(4)}</code>`);
     }
   }
+
   saveHist('Avogadro', `N = ${N.toExponential(4)} ${tipo}`);
   document.getElementById('avogadro-result').innerHTML =
     `<div class="result-box">
@@ -1574,24 +1331,31 @@ async function calcAvogadro() {
     </div>` + mkSteps(steps);
 }
 
-/* ── MÓDULO 3 — MASA MOLAR ── */
+/* ══════════════════════════════════
+   MÓDULO 3 — MASA MOLAR
+══════════════════════════════════ */
 async function calcMasaMolar() {
   const formula = document.getElementById('mm-formula').value.trim();
   if(!formula) return showErr('masaMolar-result','Ingresa una fórmula química');
+
   const btn = event.currentTarget;
   btn.classList.add('calculating');
   await progress('masaMolar-result');
   btn.classList.remove('calculating');
+
   const parsed = parseFormula(formula);
-  if(!parsed) return showErr('masaMolar-result','Fórmula inválida. Verifica paréntesis y mayúsculas.');
+  if(!parsed) return showErr('masaMolar-result','Fórmula inválida. Verifica paréntesis y mayúsculas. Ej: Ca3(PO4)2');
+
   const unknown = Object.keys(parsed).filter(e=>!ATOMIC_MASS[e]);
   if(unknown.length) return showErr('masaMolar-result',`Elemento(s) desconocido(s): ${unknown.join(', ')}`);
+
   const M = calcMolarMass(parsed);
   const rows = Object.entries(parsed).map(([el,n])=>{
     const ma = ATOMIC_MASS[el];
     const contrib = n*ma;
     return {el,n,ma,contrib,pct:contrib/M*100};
   });
+
   const tableRows = rows.map(r=>`<tr>
     <td>${ELEMENT_NAMES[r.el]||r.el}</td>
     <td class="sym">${r.el}</td>
@@ -1599,41 +1363,46 @@ async function calcMasaMolar() {
     <td class="num">${r.ma.toFixed(3)}</td>
     <td class="contrib">${r.contrib.toFixed(4)}</td>
   </tr>`).join('');
+
   const steps = [
     `Parsear la fórmula: ${fmtFormula(parsed)}`,
     ...rows.map(r=>`${r.el}: <code>${r.n} × ${r.ma} = ${r.contrib.toFixed(4)} g/mol</code>`),
-    `Suma: <code>M = ${rows.map(r=>r.contrib.toFixed(4)).join(' + ')} = ${M.toFixed(4)} g/mol</code>`
+    `Suma total: <code>M = ${rows.map(r=>r.contrib.toFixed(4)).join(' + ')} = ${M.toFixed(4)} g/mol</code>`
   ];
+
   saveHist('Masa Molar', `M(${formula}) = ${M.toFixed(4)} g/mol`);
   document.getElementById('masaMolar-result').innerHTML = `
     ${mkResult(`${fmtFixed(M,4)}`, 'g/mol', `Fórmula: ${fmtFormula(parsed)}`)}
     <div class="card" style="margin-top:12px">
       <div class="card-title">Desglose por elemento</div>
-      <div class="table-scroll">
-        <table class="data-table">
-          <thead><tr><th>Elemento</th><th>Símbolo</th><th>N°</th><th>M atóm.</th><th>Contrib.</th></tr></thead>
-          <tbody>${tableRows}
-          <tr class="total-row">
-            <td colspan="4"><b>Total</b></td>
-            <td class="num"><b>${M.toFixed(4)}</b></td>
-          </tr></tbody>
-        </table>
-      </div>
+      <table class="data-table">
+        <thead><tr><th>Elemento</th><th>Símbolo</th><th>N° átomos</th><th>M atómica (g/mol)</th><th>Contribución (g/mol)</th></tr></thead>
+        <tbody>${tableRows}
+        <tr class="total-row">
+          <td colspan="4"><b>Masa molar total</b></td>
+          <td class="num"><b>${M.toFixed(4)}</b></td>
+        </tr></tbody>
+      </table>
     </div>` + mkSteps(steps);
 }
 
-/* ── MÓDULO 4 — COMPOSICIÓN % ── */
+/* ══════════════════════════════════
+   MÓDULO 4 — COMPOSICIÓN %
+══════════════════════════════════ */
 async function calcComposicion() {
   const formula = document.getElementById('comp-formula').value.trim();
   if(!formula) return showErr('composicion-result','Ingresa una fórmula química');
+
   const btn = event.currentTarget;
   btn.classList.add('calculating');
   await progress('composicion-result');
   btn.classList.remove('calculating');
+
   const parsed = parseFormula(formula);
   if(!parsed) return showErr('composicion-result','Fórmula inválida');
   const unknown = Object.keys(parsed).filter(e=>!ATOMIC_MASS[e]);
   if(unknown.length) return showErr('composicion-result',`Elemento desconocido: ${unknown.join(', ')}`);
+
   const M = calcMolarMass(parsed);
   const rows = Object.entries(parsed).map(([el,n],i)=>({
     el,n,
@@ -1641,27 +1410,29 @@ async function calcComposicion() {
     pct: n*ATOMIC_MASS[el]/M*100,
     color: PIE_COLORS[i%PIE_COLORS.length]
   }));
+
   const tableRows = rows.map(r=>`<tr>
     <td><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:${r.color};margin-right:6px"></span>${r.el}</td>
     <td class="num">${r.pct.toFixed(2)}%</td>
     <td class="contrib">${r.contrib.toFixed(4)} g/mol</td>
   </tr>`).join('');
+
   const steps = [
-    `Masa molar total: <code>M = ${M.toFixed(4)} g/mol</code>`,
+    `Calcular masa molar total: <code>M = ${M.toFixed(4)} g/mol</code>`,
     ...rows.map(r=>`<code>%${r.el} = (${r.n} × ${ATOMIC_MASS[r.el]} / ${M.toFixed(4)}) × 100 = ${r.pct.toFixed(2)}%</code>`)
   ];
+
   saveHist('Composición %', `${formula}: ${rows.map(r=>`${r.el} ${r.pct.toFixed(2)}%`).join(', ')}`);
+
   document.getElementById('composicion-result').innerHTML = `
     <div class="card" style="margin-top:12px">
-      <div class="card-title">${fmtFormula(parsed)} — M = ${M.toFixed(4)} g/mol</div>
-      <div class="table-scroll">
-        <table class="data-table">
-          <thead><tr><th>Elemento</th><th>% masa</th><th>Contribución</th></tr></thead>
-          <tbody>${tableRows}</tbody>
-        </table>
-      </div>
+      <div class="card-title">Composición de ${fmtFormula(parsed)} — M = ${M.toFixed(4)} g/mol</div>
+      <table class="data-table">
+        <thead><tr><th>Elemento</th><th>% en masa</th><th>Contribución</th></tr></thead>
+        <tbody>${tableRows}</tbody>
+      </table>
       <div class="pie-wrap">
-        <canvas id="pie-chart" width="140" height="140"></canvas>
+        <canvas id="pie-chart" width="160" height="160"></canvas>
         <div class="pie-legend">
           ${rows.map(r=>`<div class="legend-item">
             <span class="legend-dot" style="background:${r.color}"></span>
@@ -1671,6 +1442,7 @@ async function calcComposicion() {
         </div>
       </div>
     </div>` + mkSteps(steps);
+
   drawPie(rows);
 }
 
@@ -1678,10 +1450,10 @@ function drawPie(rows) {
   const canvas = document.getElementById('pie-chart');
   if(!canvas) return;
   const ctx = canvas.getContext('2d');
-  const cx=70, cy=70, r=62;
+  const cx=80, cy=80, r=70;
   let angle = -Math.PI/2;
   const total = rows.reduce((s,r)=>s+r.pct, 0);
-  ctx.clearRect(0,0,140,140);
+  ctx.clearRect(0,0,160,160);
   rows.forEach(row=>{
     const slice = (row.pct/total)*2*Math.PI;
     ctx.beginPath();
@@ -1697,7 +1469,9 @@ function drawPie(rows) {
   });
 }
 
-/* ── MÓDULO 5 — FÓRMULA EMPÍRICA ── */
+/* ══════════════════════════════════
+   MÓDULO 5 — FÓRMULA EMPÍRICA
+══════════════════════════════════ */
 let elemCount = 0;
 
 function initEmpirica() {
@@ -1714,20 +1488,21 @@ function addElemRow() {
   div.id = `erow-${id}`;
   div.innerHTML = `
     <div class="field">
-      <label>Elem.</label>
-      <input type="text" placeholder="C" id="eel-${id}" maxlength="3" style="font-family:var(--mono);font-weight:700" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <label>Elemento</label>
+      <input type="text" placeholder="ej. C" id="eel-${id}" maxlength="3" style="font-family:var(--mono);font-weight:700">
     </div>
-    <div class="field">
+    <div class="field elem-pct">
       <label>% en masa</label>
-      <input type="number" placeholder="40.0" id="epct-${id}" min="0" max="100" step="any" inputmode="decimal">
+      <input type="number" placeholder="ej. 40.0" id="epct-${id}" min="0" max="100" step="any">
     </div>
     <div class="field">
       <label>M atómica</label>
-      <input type="number" placeholder="auto" id="ema-${id}" min="0" step="any" inputmode="decimal">
+      <input type="number" placeholder="auto" id="ema-${id}" min="0" step="any">
     </div>
-    <div style="padding-bottom:14px;display:flex;align-items:flex-end">
-      <button class="btn btn-danger btn-sm" onclick="document.getElementById('erow-${id}').remove()" aria-label="Eliminar">✕</button>
+    <div style="padding-bottom:14px">
+      <button class="btn btn-danger btn-sm" onclick="document.getElementById('erow-${id}').remove()">✕</button>
     </div>`;
+  // Auto-fill masa atómica on blur
   div.querySelector(`#eel-${id}`).addEventListener('blur', function() {
     const sym = this.value.trim();
     const maInput = document.getElementById(`ema-${id}`);
@@ -1741,10 +1516,10 @@ function addCombRow() {
   div.className = 'elem-row';
   const id = 'c'+Date.now();
   div.innerHTML = `
-    <div class="field"><label>Elem.</label><input type="text" placeholder="C" id="ceel-${id}" maxlength="3" style="font-family:var(--mono);font-weight:700" autocorrect="off" autocapitalize="off" spellcheck="false"></div>
-    <div class="field"><label>%</label><input type="number" placeholder="40" id="cepct-${id}" min="0" max="100" step="any" inputmode="decimal"></div>
-    <div class="field"><label>M atómica</label><input type="number" placeholder="auto" id="cema-${id}" min="0" step="any" inputmode="decimal"></div>
-    <div style="padding-bottom:14px;display:flex;align-items:flex-end"><button class="btn btn-danger btn-sm" onclick="this.closest('.elem-row').remove()" aria-label="Eliminar">✕</button></div>`;
+    <div class="field"><label>Elemento</label><input type="text" placeholder="C" id="ceel-${id}" maxlength="3" style="font-family:var(--mono);font-weight:700"></div>
+    <div class="field"><label>%</label><input type="number" placeholder="40" id="cepct-${id}" min="0" max="100" step="any"></div>
+    <div class="field"><label>M atómica</label><input type="number" placeholder="auto" id="cema-${id}" min="0" step="any"></div>
+    <div style="padding-bottom:14px"><button class="btn btn-danger btn-sm" onclick="this.closest('.elem-row').remove()">✕</button></div>`;
   div.querySelector(`[id^="ceel-"]`).addEventListener('blur', function() {
     const sym=this.value.trim(), maId=this.id.replace('ceel-','cema-');
     if(ATOMIC_MASS[sym]&&!document.getElementById(maId).value) document.getElementById(maId).value=ATOMIC_MASS[sym];
@@ -1761,7 +1536,7 @@ function readElemRows(listId='empirica-list') {
     let ma = parseFloat(row.querySelectorAll('input[type=number]')[1].value);
     if(!el||isNaN(pct)) continue;
     if(isNaN(ma)) ma = ATOMIC_MASS[el];
-    if(!ma) return {error:`Masa atómica de ${el} no encontrada.`};
+    if(!ma) return {error:`Masa atómica de ${el} no encontrada. Ingresa el valor manualmente.`};
     elems.push({el,pct,ma});
   }
   return elems;
@@ -1772,11 +1547,14 @@ async function calcEmpirica() {
   btn.classList.add('calculating');
   await progress('empirica-result');
   btn.classList.remove('calculating');
+
   const elems = readElemRows('empirica-list');
   if(elems.error) return showErr('empirica-result', elems.error);
   if(elems.length < 2) return showErr('empirica-result','Ingresa al menos 2 elementos');
+
   const result = computeEmpirica(elems);
   if(result.error) return showErr('empirica-result', result.error);
+
   saveHist('Fórmula Empírica', result.formula);
   document.getElementById('empirica-result').innerHTML =
     `<div class="result-box">
@@ -1786,12 +1564,10 @@ async function calcEmpirica() {
     </div>
     <div class="card" style="margin-top:12px">
       <div class="card-title">Tabla de cálculo</div>
-      <div class="table-scroll">
-        <table class="data-table">
-          <thead><tr><th>Elem.</th><th>%</th><th>÷ M</th><th>Moles rel.</th><th>÷ mín</th><th>Sub.</th></tr></thead>
-          <tbody>${result.tableHtml}</tbody>
-        </table>
-      </div>
+      <table class="data-table">
+        <thead><tr><th>Elem.</th><th>%</th><th>÷ M atómica</th><th>Moles rel.</th><th>÷ mín</th><th>Subíndice</th></tr></thead>
+        <tbody>${result.tableHtml}</tbody>
+      </table>
     </div>` + mkSteps(result.steps);
 }
 
@@ -1802,6 +1578,8 @@ function computeEmpirica(elems) {
   const moles = norm.map(e=>({...e, mol:e.pct/e.ma}));
   const minMol = Math.min(...moles.map(m=>m.mol));
   const ratios = moles.map(m=>({...m, ratio:m.mol/minMol}));
+
+  // Find multiplier to get integers
   let mult=1;
   for(let k=1; k<=12; k++) {
     if(ratios.every(r=>Math.abs(r.ratio*k - Math.round(r.ratio*k)) < 0.08)) {
@@ -1811,88 +1589,105 @@ function computeEmpirica(elems) {
   const subs = ratios.map(r=>({...r, sub:Math.round(r.ratio*mult)}));
   const formulaHtml = subs.map(s=>s.el+(s.sub>1?`<sub>${s.sub}</sub>`:'')).join('');
   const formula = subs.map(s=>s.el+(s.sub>1?s.sub:'')).join('');
+
   const tableHtml = subs.map(s=>`<tr>
     <td class="sym">${s.el}</td>
     <td class="num">${s.pct.toFixed(2)}%</td>
-    <td class="mono">${s.pct.toFixed(3)}/${s.ma}</td>
-    <td class="num">${s.mol.toFixed(4)}</td>
-    <td class="num">${s.ratio.toFixed(3)}</td>
+    <td class="mono">${s.pct.toFixed(4)} / ${s.ma}</td>
+    <td class="num">${s.mol.toFixed(5)}</td>
+    <td class="num">${s.ratio.toFixed(4)}</td>
     <td class="mono" style="color:var(--lime);font-weight:700">${s.sub}</td>
   </tr>`).join('');
+
   const steps = [
-    `Normalizar a 100%: ${norm.map(e=>`${e.el}: ${e.pct.toFixed(2)}%`).join(', ')}`,
-    `Dividir entre M atómica:`,
+    `Normalizar porcentajes a 100%: ${norm.map(e=>`${e.el}: ${e.pct.toFixed(2)}%`).join(', ')}`,
+    `Dividir entre masa atómica para obtener moles relativos:`,
     ...moles.map(m=>`<code>${m.el}: ${m.pct.toFixed(4)} / ${m.ma} = ${m.mol.toFixed(5)}</code>`),
-    `Dividir entre el mínimo (${minMol.toFixed(5)}):`,
-    ...ratios.map(r=>`<code>${r.el}: ${r.ratio.toFixed(4)}</code>`),
-    mult>1 ? `Multiplicar por ${mult}` : 'Razones ya enteras',
+    `Dividir entre el valor mínimo (${minMol.toFixed(5)}):`,
+    ...ratios.map(r=>`<code>${r.el}: ${r.mol.toFixed(5)} / ${minMol.toFixed(5)} = ${r.ratio.toFixed(4)}</code>`),
+    mult>1 ? `Multiplicar por ${mult} para obtener enteros` : 'Las razones ya son enteras',
     `Fórmula empírica: <span class="highlight">${formula}</span>`
   ];
+
   return {formula, formulaHtml, tableHtml, steps, subs};
 }
 
-/* ── MÓDULO 6 — FÓRMULA MOLECULAR ── */
+/* ══════════════════════════════════
+   MÓDULO 6 — FÓRMULA MOLECULAR
+══════════════════════════════════ */
 async function calcMolecular() {
   const fe = document.getElementById('fmol-fe').value.trim();
   const Mmol = parseFloat(document.getElementById('fmol-M').value);
   if(!fe||isNaN(Mmol)||Mmol<=0) return showErr('molecular-result','Ingresa fórmula empírica y masa molar válidas');
+
   const btn = event.currentTarget;
   btn.classList.add('calculating');
   await progress('molecular-result');
   btn.classList.remove('calculating');
+
   const parsed = parseFormula(fe);
   if(!parsed) return showErr('molecular-result','Fórmula empírica inválida');
   const unknown = Object.keys(parsed).filter(e=>!ATOMIC_MASS[e]);
   if(unknown.length) return showErr('molecular-result',`Elemento desconocido: ${unknown.join(', ')}`);
+
   const Mfe = calcMolarMass(parsed);
   const n = Mmol/Mfe;
   const nRound = Math.round(n);
-  if(Math.abs(n-nRound) > 0.15) return showErr('molecular-result',`n = ${n.toFixed(3)} no es un entero. Verifica los datos.`);
+  if(Math.abs(n-nRound) > 0.15) return showErr('molecular-result',
+    `n = ${n.toFixed(3)} no es un entero cercano. Verifica los datos.`);
+
   const molParsed = Object.fromEntries(Object.entries(parsed).map(([el,cnt])=>[el,cnt*nRound]));
   const molHtml = fmtFormula(molParsed);
   const molStr = Object.entries(molParsed).map(([el,n])=>el+(n>1?n:'')).join('');
+
   const steps = [
-    `M empírica ${fmtFormula(parsed)}: <code>M_fe = ${Mfe.toFixed(4)} g/mol</code>`,
-    `n: <code>n = ${Mmol} / ${Mfe.toFixed(4)} = ${n.toFixed(4)} ≈ ${nRound}</code>`,
-    `Multiplicar subíndices de ${fe} por ${nRound}:`,
+    `Calcular M de la fórmula empírica ${fmtFormula(parsed)}: <code>M_fe = ${Mfe.toFixed(4)} g/mol</code>`,
+    `Calcular n: <code>n = ${Mmol} / ${Mfe.toFixed(4)} = ${n.toFixed(4)} ≈ ${nRound}</code>`,
+    `Multiplicar subíndices de ${fe} por n = ${nRound}:`,
     ...Object.entries(parsed).map(([el,cnt])=>`<code>${el}: ${cnt} × ${nRound} = ${cnt*nRound}</code>`),
     `Fórmula molecular: <span class="highlight">${molStr}</span>`
   ];
+
   saveHist('Fórmula Molecular', molStr);
   document.getElementById('molecular-result').innerHTML = `
     <div class="result-box">
       <div class="result-title" style="font-size:9px;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px">Fórmula Molecular</div>
       <div class="result-main">${molHtml}</div>
-      <div class="result-sub">n = ${nRound} | M_emp = ${Mfe.toFixed(4)} g/mol | M_mol = ${Mmol} g/mol</div>
+      <div class="result-sub">n = ${nRound} &nbsp;|&nbsp; M empírica = ${Mfe.toFixed(4)} g/mol &nbsp;|&nbsp; M molecular = ${Mmol} g/mol</div>
       <button class="copy-btn" onclick="copyResult(this,'${molStr}')">📋 Copiar</button>
     </div>` + mkSteps(steps);
 }
 
-/* ── MÓDULO 7 — COMBINADA ── */
+/* ══════════════════════════════════
+   MÓDULO 7 — COMBINADA
+══════════════════════════════════ */
 let combState = {};
 
 function combStep1() {
   const elems = readElemRows('comb-list');
   if(elems.error) return showErr('comb-res1', elems.error);
   if(elems.length < 2) return showErr('comb-res1', 'Ingresa al menos 2 elementos');
+
   const result = computeEmpirica(elems);
   if(result.error) return showErr('comb-res1', result.error);
   combState.empirica = result;
+
   document.getElementById('comb-res1').innerHTML = `
     <div class="alert alert-success" style="margin-top:12px">
       ✓ Fórmula empírica: <b style="font-family:var(--mono);font-size:14px">${result.formulaHtml}</b>
     </div>`;
+
   document.getElementById('flow1').classList.add('done');
-  document.getElementById('flow2').style.opacity='1';
+  const flow2 = document.getElementById('flow2');
+  flow2.style.opacity='1';
   document.getElementById('comb-Mmol').disabled = false;
   document.getElementById('comb-btn2').disabled = false;
-  // Scroll to step 2
-  setTimeout(()=>document.getElementById('flow2').scrollIntoView({behavior:'smooth',block:'start'}), 200);
 }
 
 function combStep2() {
   const Mmol = parseFloat(document.getElementById('comb-Mmol').value);
   if(isNaN(Mmol)||Mmol<=0) return showErr('comb-res2','Ingresa una masa molar válida');
+
   const fe = combState.empirica.subs;
   const parsed = {};
   fe.forEach(s=>parsed[s.el]=s.sub);
@@ -1900,58 +1695,66 @@ function combStep2() {
   const n = Mmol/Mfe;
   const nR = Math.round(n);
   if(Math.abs(n-nR)>0.15) return showErr('comb-res2',`n = ${n.toFixed(3)} no es un entero.`);
+
   const molParsed = Object.fromEntries(Object.entries(parsed).map(([el,cnt])=>[el,cnt*nR]));
   const molHtml = fmtFormula(molParsed);
   const molStr = Object.entries(molParsed).map(([el,n])=>el+(n>1?n:'')).join('');
   combState.molecular = {molStr, molParsed, Mmol};
+
   document.getElementById('comb-res2').innerHTML = `
     <div class="alert alert-success" style="margin-top:12px">
       ✓ Fórmula molecular: <b style="font-family:var(--mono);font-size:14px">${molHtml}</b>
-      &nbsp; n = ${nR}
+      &nbsp;&nbsp; n = ${nR}
     </div>`;
+
   document.getElementById('flow2').classList.add('done');
-  document.getElementById('flow3').style.opacity='1';
+  const flow3 = document.getElementById('flow3');
+  flow3.style.opacity='1';
   document.getElementById('comb-masa').disabled=false;
   document.getElementById('comb-tipo').disabled=false;
   document.getElementById('comb-btn3').disabled=false;
-  setTimeout(()=>document.getElementById('flow3').scrollIntoView({behavior:'smooth',block:'start'}), 200);
 }
 
 function combStep3() {
   const masa = parseFloat(document.getElementById('comb-masa').value);
   const tipo = document.getElementById('comb-tipo').value;
   if(isNaN(masa)||masa<=0) return showErr('comb-res3','Ingresa una masa válida');
+
   const {Mmol} = combState.molecular;
   const n = masa/Mmol;
   const N = n * NA;
+
   saveHist('Combinada', `FM: ${combState.molecular.molStr} | n=${fmtFixed(n,5)} mol | N=${N.toExponential(4)} ${tipo}`);
+
   document.getElementById('comb-res3').innerHTML = `
     <div class="result-box" style="margin-top:14px">
-      <div class="result-sub" style="font-size:13px;margin-bottom:12px">
+      <div class="result-sub" style="font-size:13px;margin-bottom:8px">
         Fórmula molecular: <b style="color:var(--lime)">${fmtFormula(combState.molecular.molParsed)}</b>
       </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:4px" class="stats-grid-3">
-        <div style="background:var(--bg3);border-radius:10px;padding:12px;border:1px solid var(--border);text-align:center">
-          <div style="font-size:9px;color:var(--txt3);margin-bottom:4px;letter-spacing:.08em;text-transform:uppercase">MOLES</div>
-          <div style="font-family:var(--mono);font-size:16px;color:var(--lime)">${fmtFixed(n,5)}</div>
-          <div style="font-size:10px;color:var(--txt3);margin-top:2px">mol</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:12px">
+        <div style="background:var(--bg3);border-radius:10px;padding:14px;border:1px solid var(--border)">
+          <div style="font-size:10px;color:var(--txt3);margin-bottom:4px">MOLES</div>
+          <div style="font-family:var(--mono);font-size:18px;color:var(--lime)">${fmtFixed(n,5)}</div>
+          <div style="font-size:10px;color:var(--txt3)">mol</div>
         </div>
-        <div style="background:var(--bg3);border-radius:10px;padding:12px;border:1px solid var(--border);text-align:center">
-          <div style="font-size:9px;color:var(--txt3);margin-bottom:4px;letter-spacing:.08em;text-transform:uppercase">MASA MOLAR</div>
-          <div style="font-family:var(--mono);font-size:16px;color:var(--cyan)">${fmtFixed(Mmol,4)}</div>
-          <div style="font-size:10px;color:var(--txt3);margin-top:2px">g/mol</div>
+        <div style="background:var(--bg3);border-radius:10px;padding:14px;border:1px solid var(--border)">
+          <div style="font-size:10px;color:var(--txt3);margin-bottom:4px">MASA MOLAR</div>
+          <div style="font-family:var(--mono);font-size:18px;color:var(--cyan)">${fmtFixed(Mmol,4)}</div>
+          <div style="font-size:10px;color:var(--txt3)">g/mol</div>
         </div>
-        <div style="background:var(--bg3);border-radius:10px;padding:12px;border:1px solid var(--border);text-align:center">
-          <div style="font-size:9px;color:var(--txt3);margin-bottom:4px;letter-spacing:.08em;text-transform:uppercase">${tipo.toUpperCase()}</div>
-          <div style="font-family:var(--mono);font-size:14px;color:var(--purple);word-break:break-all">${fmtN(N)}</div>
-          <div style="font-size:10px;color:var(--txt3);margin-top:2px">${tipo}</div>
+        <div style="background:var(--bg3);border-radius:10px;padding:14px;border:1px solid var(--border)">
+          <div style="font-size:10px;color:var(--txt3);margin-bottom:4px">${tipo.toUpperCase()}</div>
+          <div style="font-family:var(--mono);font-size:16px;color:var(--purple)">${fmtN(N)}</div>
+          <div style="font-size:10px;color:var(--txt3)">${tipo}</div>
         </div>
       </div>
     </div>`;
   document.getElementById('flow3').classList.add('done');
 }
 
-/* ── TABLA PERIÓDICA MINI ── */
+/* ══════════════════════════════════
+   TABLA PERIÓDICA MINI
+══════════════════════════════════ */
 const TOP_ELEMENTS = [
   'H','C','N','O','F','Na','Mg','Al','Si','P',
   'S','Cl','K','Ca','Fe','Cu','Zn','Br','Ag','I',
@@ -1960,7 +1763,7 @@ const TOP_ELEMENTS = [
 
 function buildPeriodicMini(containerId, targetInputId) {
   const div = document.getElementById(containerId);
-  div.innerHTML = `<h4>Toca para insertar en la fórmula</h4>
+  div.innerHTML = `<h4>Haz clic para insertar en la fórmula</h4>
   <div class="periodic-grid">
     ${TOP_ELEMENTS.map(el=>`<div class="elem-chip" onclick="insertElement('${targetInputId}','${el}')">
       <span class="sym">${el}</span>
@@ -1981,23 +1784,31 @@ function insertElement(inputId, sym) {
   if(inp) { inp.value += sym; inp.focus(); }
 }
 
-/* ── EJEMPLOS ── */
+/* ══════════════════════════════════
+   EJEMPLOS PRE-CARGADOS
+══════════════════════════════════ */
 function loadEx(id) {
   switch(id) {
     case 'moles-masa':
       document.getElementById('m1-masa').value=36.03;
-      document.getElementById('m1-M').value=18.015; break;
+      document.getElementById('m1-M').value=18.015;
+      break;
     case 'moles-part':
-      document.getElementById('m1-N').value=1.2044e24; break;
+      document.getElementById('m1-N').value=1.2044e24;
+      break;
     case 'moles-vol':
-      document.getElementById('m1-V').value=44.8; break;
+      document.getElementById('m1-V').value=44.8;
+      break;
     case 'avogadro':
       document.getElementById('av-n').value=2;
-      document.getElementById('av-formula').value='H2O'; break;
+      document.getElementById('av-formula').value='H2O';
+      break;
     case 'masaMolar':
-      document.getElementById('mm-formula').value='C6H12O6'; break;
+      document.getElementById('mm-formula').value='C6H12O6';
+      break;
     case 'composicion':
-      document.getElementById('comp-formula').value='C6H12O6'; break;
+      document.getElementById('comp-formula').value='C6H12O6';
+      break;
     case 'empirica':
       initEmpirica();
       setTimeout(()=>{
@@ -2009,10 +1820,12 @@ function loadEx(id) {
           row.querySelectorAll('input[type=number]')[0].value=data[i].pct;
           row.querySelectorAll('input[type=number]')[1].value=data[i].ma;
         });
-      },50); break;
+      },50);
+      break;
     case 'molecular':
       document.getElementById('fmol-fe').value='CH2O';
-      document.getElementById('fmol-M').value=180; break;
+      document.getElementById('fmol-M').value=180;
+      break;
     case 'combinada':
       document.getElementById('comb-list').innerHTML='';
       const combData=[{el:'C',pct:40,ma:12.011},{el:'H',pct:6.67,ma:1.008},{el:'O',pct:53.33,ma:15.999}];
@@ -2025,16 +1838,17 @@ function loadEx(id) {
           rows[i].querySelectorAll('input[type=number]')[0].value=d.pct;
           rows[i].querySelectorAll('input[type=number]')[1].value=d.ma;
         });
-      },50); break;
+      },50);
+      break;
   }
 }
 
-/* ── PARTÍCULAS FLOTANTES ── */
+/* ══════════════════════════════════
+   PARTÍCULAS FLOTANTES
+══════════════════════════════════ */
 function initParticles() {
   const container = document.getElementById('particles');
-  // Reducir en móvil para ahorrar batería
-  const count = window.innerWidth <= 768 ? 6 : 12;
-  for(let i=0;i<count;i++) {
+  for(let i=0;i<12;i++) {
     const p = document.createElement('div');
     p.className='particle';
     const size = Math.random()*4+2;
@@ -2049,25 +1863,15 @@ function initParticles() {
   }
 }
 
-/* ── INIT ── */
+/* ══════════════════════════════════
+   INIT
+══════════════════════════════════ */
 document.addEventListener('DOMContentLoaded', ()=>{
   initEmpirica();
+  // Init comb list
   for(let i=0;i<3;i++) addCombRow();
   initParticles();
   renderHistory();
-
-  // Cerrar sidebar con tecla Escape
-  document.addEventListener('keydown', e=>{
-    if(e.key==='Escape') closeSidebar();
-  });
-
-  // Prevenir zoom accidental en doble tap en iOS
-  let lastTap = 0;
-  document.addEventListener('touchend', e=>{
-    const now = Date.now();
-    if(now - lastTap < 300) e.preventDefault();
-    lastTap = now;
-  }, {passive: false});
 });
 </script>
 </body>
